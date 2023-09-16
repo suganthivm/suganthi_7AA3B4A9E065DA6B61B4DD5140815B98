@@ -1,19 +1,31 @@
-# Python program to find the factorial of a number provided by the user.
+class BankAccount:
+  def initial(self,account_number,account_holder_name,initial_balance=0.0):
+    self.__account_number = account_number
+    self.__account_holder_name = account_holder_name
+    self.__account_balance = initial_balance
 
-# change the value for a different result
-num = 7
+  def deposit(self,amount):
+    if amount>0:
+      self.__account_balance += amount
+      print("Deposited Rs.{}. Now balance: Rs.{} ".format(amount,self.__account_balance))
+    else:  
+      print("Invalid deposit")
 
-# To take input from the user
-#num = int(input("Enter a number: "))
+  def withdraw(self,amount):
+    if amount>0 and amount<=self.__account_balance:
+      self.__account_balance -= amount
+      print("Withdraw Rs.{}. Now balance: Rs.{} ".format(amount,self.__account_balance))
+    else: 
+       print("Invalid withdraw or amoint insufficient")
 
-factorial = 1
+  def display(self):
+    print("Account Holder:{}. Account Number:{}. Account Balance:{}".format(self.__account_holder_name,self.__account_number,self.__account_balance))
 
-# check if the number is negative, positive or zero
-if num < 0:
-   print("Sorry, factorial does not exist for negative numbers")
-elif num == 0:
-   print("The factorial of 0 is 1")
-else:
-   for i in range(1,num + 1):
-       factorial = factorial*i
-   print("The factorial of",num,"is",factorial)
+
+account = BankAccount()
+
+account.initial(account_number="6379697038",account_holder_name="suganthi",initial_balance=6000.0)
+account.display()
+account.deposit(2000)
+account.withdraw(1000)
+account.display()
